@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexis Jiem Tolentino | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <style>
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #f9f9f9;
+    color: #111;
+    overflow-x: hidden;
+  }
+
+  /* Navbar base */
+  nav {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    overflow: hidden;
+  }
+
+  /* Nav links */
+  nav a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #007aff;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 30px;
+    padding: 6px 12px;
+    transition: background 0.3s, color 0.3s, transform 0.3s, width 0.4s ease, justify-content 0.4s ease;
+    overflow: hidden;
+  }
+
+  nav a i {
+    font-size: 1.2em;
+    transition: transform 0.3s;
+  }
+
+  nav a .label {
+    white-space: nowrap;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  /* Hover on nav -> expand */
+  nav:hover {
+    padding: 12px 40px;
+    gap: 40px;
+  }
+
+  nav:hover a .label {
+    opacity: 1;
+    width: auto;
+  }
+
+  nav a:hover {
+    color: #fff;
+    background: #007aff;
+    transform: translateY(-2px);
+  }
+
+  nav a.active-link {
+    color: #fff;
+    background: #007aff;
+    transform: translateY(-2px);
+  }
+
+  nav a.active-link:not(:hover) {
+    justify-content: center;
+    gap: 0;
+    padding: 6px 12px;
+  }
+
+  nav a.active-link:hover,
+  nav:hover a.active-link {
+    gap: 8px;
+    opacity: 1;
+    width: auto;
+  }
+
+  /* Sections */
+  .section {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .section.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 15px;
+  }
+  h2 {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 17px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    justify-items: center;
+  }
+  .project-card {
+    background: #fff;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+  }
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+  .project-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover .project-icon {
+    transform: scale(1.2) rotate(5deg);
+  }
+  .project-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+  }
+/* Uniform square gallery images */
+.gallery img {
+  width: 200px;      /* fixed width */
+  height: 200px;     /* fixed height */
+  object-fit: cover; /* cover ensures image fills the square without distortion */
+  border-radius: 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+  /* Modal overlay */
+  .modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 200;
+  }
+  .modal.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-content {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 900px;
+    width: 90%;
+    max-height: 85%;
+    overflow-y: auto;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .modal.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .modal.closing .modal-content {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .modal-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #007aff;
+  }
+  .close-btn {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .close-btn:hover {
+    color: #007aff;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+
+/* Resume Image Styles */
+#resume img {
+  width: 500px; /* desktop width */
+  max-width: 100%; /* ensures it doesn't overflow on smaller screens */
+  margin: 0 auto; /* centers the image */
+  display: block;
+  border-radius: 30px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+  /* ------------------ MEDIA QUERIES ------------------ */
+  @media (max-width: 1024px) {
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.4em; }
+    p { font-size: 16px; }
+    .projects-grid { gap: 20px; }
+  }
+
+@media (max-width: 768px) {
+body {
+    margin: 700px;
+  }
+
+#resume img {
+    width: 90%; /* take 90% of screen width */
+  }
+  nav {
+    top: auto;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 15px;
+    gap: 20px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.274);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+
+    /* disable desktop hover effects */
+    transition: none !important;
+  }
+
+  nav:hover {
+    padding: 10px 15px !important;
+    gap: 20px !important;
+  }
+
+  nav a {
+    padding: 8px !important;
+    flex-direction: column;
+    gap: 0;
+    background: transparent !important;
+    border-radius: 50%;
+    transition: none !important; /* no hover animation */
+  }
+
+  nav a:hover,
+  nav a.active-link {
+    transform: none !important; /* disable any movement */
+    background: transparent !important; /* no hover color */
+    color: #007aff !important; /* keep icon color static */
+    padding: 8px !important;
+    gap: 0 !important;
+  }
+
+  nav a .label {
+    display: none !important; /* hide labels on mobile */
+  }
+
+  nav a i {
+    transition: none !important; /* icon stays static */
+    font-size: 1.4em;
+    color: #007aff;
+
+    
+  }
+  
+}
+
+</style>
+
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+  <a onclick="showSection('about')">
+    <i class="bi bi-person-fill"></i>
+    <span class="label">About</span>
+  </a>
+  <a onclick="showSection('projects')">
+    <i class="bi bi-folder-fill"></i>
+    <span class="label">Projects</span>
+  </a>
+  <a onclick="showSection('contact')">
+    <i class="bi bi-envelope-fill"></i>
+    <span class="label">Contact</span>
+  </a>
+
+  <a onclick="showSection('resume')">
+<i class="bi bi-file-earmark-person-fill"></i>
+    <span class="label">Resume</span>
+  </a>
+
+</nav>
+
+  <!-- ABOUT -->
+  <div style="text-align: left;" id="about" class="section active">
+    <h1> Heyo kamusta!</h1>
+    <h2 style="margin-top: -15px;">I’m Alexis</h2>
+    <p>An IT Graduate specializing in <b>Graphic Designing</b>, <b>Frontend Web Development</b>, and <b>Solo Game Development</b>.</p>
+       
+  </div>
+
+  <!-- PROJECTS -->
+<div id="projects" class="section">
+  <h1>Projects</h1>
+  <div class="projects-grid">
+    <div class="project-card" onclick="openModal('logo')">
+      <i class="bi bi-palette project-icon"></i>
+      <div class="project-label">Logo Design</div>
+    </div>
+    <div class="project-card" onclick="openModal('typography')">
+      <i class="bi bi-type project-icon"></i>
+      <div class="project-label">Typography</div>
+    </div>
+    <div class="project-card" onclick="openModal('photo')">
+      <i class="bi bi-camera-fill project-icon"></i>
+      <div class="project-label">Photography</div>
+    </div>
+    <div class="project-card" onclick="openModal('model')">
+      <i class="bi bi-archive project-icon"></i>
+      <div class="project-label">3D Models</div>
+    </div>
+    <div class="project-card" onclick="openModal('game')">
+      <i class="bi bi-controller project-icon"></i>
+      <div class="project-label">Game Development</div>
+    </div>
+  </div>
+</div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="section">
+    <h1>Contact Me</h1>
+    <p><i class="bi bi-envelope-fill"></i> 
+       <a style="text-decoration: none;"  href="mailto:alexisjiemfailure@gmail.com">alexisjiemfailure@gmail.com</a>
+    </p>
+    <p><i class="bi bi-facebook"></i> 
+       <a style="text-decoration: none;" href="https://facebook.com/AlexisjTolentino" target="_blank">Alexisj Tolentino</a>
+    </p>
+    <p><i class="bi bi-building"></i> Dual Blade Gaming Studio</p>
+  </div>
+
+  <!-- resume -->
+  <div style="padding-top: 180px; padding-bottom: 50px;" id="resume" class="section">
+    <h1>Resume</h1>
+     <img style=" border-radius: 30px; width: 500px;box-shadow: 0 6px 16px rgba(0,0,0,0.15); left: 40px;" src="images/res.png" alt="Typography 1">
+  </div>
+
+  <!-- MODALS for PROJECTS -->
+  <div id="modal-logo" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Logo Design</h2>
+        <span class="close-btn" onclick="closeModal('logo')">&times;</span>
+      </div>
+      <div class="gallery">
+        <img src="images/logo1.png" alt="Logo 1">
+        <img src="images/logo2.png" alt="Logo 2">
+        <img src="images/logo3.png" alt="Logo 3">
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-typography" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Typography</h2>
+        <span class="close-btn" onclick="closeModal('typography')">&times;</span>
+      </div>
+      <div class="gallery">
+        <img src="images/t1.png" alt="Typography 1">
+        <img src="images/t2.png" alt="Typography 2">
+        <img src="images/t3.png" alt="Typography 2">
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-photo" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Photography</h2>
+        <span class="close-btn" onclick="closeModal('photo')">&times;</span>
+      </div>
+      <div class="gallery">
+        <img src="images/p1.png" alt="Photo 1">
+        <img src="images/p2.png" alt="Photo 2">
+        <img src="images/p3.png" alt="Photo 2">
+        <img src="images/p4.png" alt="Photo 2">
+        <img src="images/p5.png" alt="Photo 2">
+        <img src="images/p6.png" alt="Photo 2">
+      </div>
+    </div>
+  </div>
+
+
+  <div id="modal-model" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>3D Models</h2>
+        <span class="close-btn" onclick="closeModal('model')">&times;</span>
+      </div>
+      <div class="gallery">
+        <img src="images/3d1.png" alt="3D Model 1">
+        <img src="images/3d2.png" alt="3D Model 2">
+        <img src="images/3d3.png" alt="3D Model 2">
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-game" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Game Development</h2>
+        <span class="close-btn" onclick="closeModal('game')">&times;</span>
+      </div>
+      <div class="gallery">
+        <img src="images/g1.png" alt="Game 1">
+        <img src="images/g2.png" alt="Game 2">
+      </div>
+      <a href="https://gd.games/alexisssss/aswang---dugong-berde" 
+   style=" margin-top: 20px; padding:10px 20px; font-size:16px; background-color:#007aff; color:#fff; text-decoration:none; border-radius:30px; display:inline-block;">
+   <i class="bi bi-play"></i> Play
+</a>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      // highlight nav link
+      document.querySelectorAll('nav a').forEach(link => link.classList.remove('active-link'));
+      const activeNav = document.querySelector(`nav a[onclick="showSection('${id}')"]`);
+      if (activeNav) activeNav.classList.add('active-link');
+    }
+
+    function openModal(type) {
+      const modal = document.getElementById("modal-" + type);
+      if (!modal) return;
+
+      modal.classList.remove('closing');
+      modal.classList.add('active');
+    }
+
+    function closeModal(type) {
+      const modal = document.getElementById("modal-" + type);
+      if (!modal) return;
+
+      modal.classList.add('closing');
+      setTimeout(() => {
+        modal.classList.remove('active', 'closing');
+      }, 300); // matches transition duration
+    }
+
+    // close modal when clicking outside content
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) { 
+          modal.classList.remove('opening');
+          closeModal(modal.id.replace('modal-', ''));
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('about');
+    });
+  </script>
+
+</body>
+</html>
