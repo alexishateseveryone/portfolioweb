@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alexis Jiem Tolentino | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
   <style>
   body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'League Spartan', sans-serif;
     background: #f9f9f9;
     color: #111;
     overflow-x: hidden;
@@ -22,7 +22,7 @@
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255,255,255,0.7);
+    background: rgba(255, 255, 255, 0.274);
     backdrop-filter: blur(12px);
     border-radius: 50px;
     padding: 10px 20px;
@@ -30,7 +30,7 @@
     justify-content: center;
     gap: 20px;
     z-index: 100;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.315);
     transition: all 0.4s ease;
     overflow: hidden;
   }
@@ -53,6 +53,7 @@
   }
 
   nav a i {
+  
     font-size: 1.2em;
     transition: transform 0.3s;
   }
@@ -67,6 +68,7 @@
 
   /* Hover on nav -> expand */
   nav:hover {
+    
     padding: 12px 40px;
     gap: 40px;
   }
@@ -122,22 +124,47 @@
   }
 
   h1 {
+
     font-size: 2.2em;
     font-weight: 700;
-    color: #111;
+    color: #ffffff;
     margin-bottom: 15px;
   }
   h2 {
     font-size: 1.6em;
     font-weight: 600;
-    color: #444;
+    color: #ffffff;
     margin-bottom: 20px;
   }
   p {
     font-size: 17px;
-    color: #555;
+    color: #ffffff;
     line-height: 1.6;
   }
+
+  .about-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px;
+}
+
+.about-section img {
+  background: rgba(255, 255, 255, 0.151);
+    backdrop-filter: blur(5px);
+  width: 250px;         /* size ng profile card/pic */
+  height: auto;
+  border-radius: 20px;  /* para card-style */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.about-section .about-text {
+  text-align: left;
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
 
   /* Projects Grid */
   .projects-grid {
@@ -148,25 +175,28 @@
     justify-items: center;
   }
   .project-card {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.274);
     width: 150px;
     height: 150px;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
     cursor: pointer;
     text-align: center;
     padding: 10px;
   }
   .project-card:hover {
+    backdrop-filter: blur(44px);
     transform: translateY(-8px);
     box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   }
   .project-icon {
+    color: #ffffff;
     font-size: 2.5em;
     margin-bottom: 10px;
     transition: transform 0.3s ease;
@@ -177,7 +207,7 @@
   .project-label {
     font-size: 15px;
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
   }
 /* Uniform square gallery images */
 .gallery img {
@@ -197,7 +227,7 @@
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.247);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -319,6 +349,215 @@
   border-radius: 20px;
   
 }
+@keyframes move {
+    100% {
+        transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #3E1E68;
+    overflow: hidden;
+}
+
+.background span {
+    width: 31vmin;
+    height: 31vmin;
+    border-radius: 31vmin;
+    backface-visibility: hidden;
+    position: absolute;
+    animation: move;
+    animation-duration: 33;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+
+.background span:nth-child(0) {
+    color: #E45A84;
+    top: 55%;
+    left: 10%;
+    animation-duration: 12s;
+    animation-delay: -125s;
+    transform-origin: 20vw 19vh;
+    box-shadow: 62vmin 0 7.828503738418878vmin currentColor;
+}
+.background span:nth-child(1) {
+    color: #FFACAC;
+    top: 16%;
+    left: 65%;
+    animation-duration: 48s;
+    animation-delay: -113s;
+    transform-origin: -16vw 5vh;
+    box-shadow: 62vmin 0 8.559569655464646vmin currentColor;
+}
+.background span:nth-child(2) {
+    color: #FFACAC;
+    top: 83%;
+    left: 30%;
+    animation-duration: 25s;
+    animation-delay: -4s;
+    transform-origin: 19vw -13vh;
+    box-shadow: 62vmin 0 8.370867905052016vmin currentColor;
+}
+.background span:nth-child(3) {
+    color: #FFACAC;
+    top: 28%;
+    left: 72%;
+    animation-duration: 18s;
+    animation-delay: -68s;
+    transform-origin: -15vw 21vh;
+    box-shadow: 62vmin 0 7.936384309525833vmin currentColor;
+}
+.background span:nth-child(4) {
+    color: #583C87;
+    top: 68%;
+    left: 23%;
+    animation-duration: 11s;
+    animation-delay: -54s;
+    transform-origin: -24vw -22vh;
+    box-shadow: 62vmin 0 8.564634781412892vmin currentColor;
+}
+.background span:nth-child(5) {
+    color: #583C87;
+    top: 66%;
+    left: 94%;
+    animation-duration: 119s;
+    animation-delay: -146s;
+    transform-origin: -8vw -8vh;
+    box-shadow: -62vmin 0 8.417023501495414vmin currentColor;
+}
+.background span:nth-child(6) {
+    color: #FFACAC;
+    top: 3%;
+    left: 45%;
+    animation-duration: 12s;
+    animation-delay: -135s;
+    transform-origin: 15vw -22vh;
+    box-shadow: 62vmin 0 8.264546426162095vmin currentColor;
+}
+.background span:nth-child(7) {
+    color: #E45A84;
+    top: 99%;
+    left: 45%;
+    animation-duration: 153s;
+    animation-delay: -43s;
+    transform-origin: -18vw 18vh;
+    box-shadow: -62vmin 0 8.204729856497085vmin currentColor;
+}
+.background span:nth-child(8) {
+    color: #E45A84;
+    top: 19%;
+    left: 43%;
+    animation-duration: 151s;
+    animation-delay: -160s;
+    transform-origin: 10vw 13vh;
+    box-shadow: -62vmin 0 8.16725934696526vmin currentColor;
+}
+.background span:nth-child(9) {
+    color: #FFACAC;
+    top: 33%;
+    left: 82%;
+    animation-duration: 110s;
+    animation-delay: -45s;
+    transform-origin: 8vw 3vh;
+    box-shadow: -62vmin 0 8.456671431187774vmin currentColor;
+}
+.background span:nth-child(10) {
+    color: #E45A84;
+    top: 2%;
+    left: 94%;
+    animation-duration: 134s;
+    animation-delay: -137s;
+    transform-origin: -12vw 17vh;
+    box-shadow: -62vmin 0 8.713069367899166vmin currentColor;
+}
+.background span:nth-child(11) {
+    color: #FFACAC;
+    top: 71%;
+    left: 85%;
+    animation-duration: 6s;
+    animation-delay: -145s;
+    transform-origin: 18vw 7vh;
+    box-shadow: 62vmin 0 8.601180635022823vmin currentColor;
+}
+.background span:nth-child(12) {
+    color: #E45A84;
+    top: 61%;
+    left: 72%;
+    animation-duration: 85s;
+    animation-delay: -162s;
+    transform-origin: 6vw -1vh;
+    box-shadow: -62vmin 0 8.4453793017036vmin currentColor;
+}
+.background span:nth-child(13) {
+    color: #E45A84;
+    top: 71%;
+    left: 52%;
+    animation-duration: 157s;
+    animation-delay: -97s;
+    transform-origin: -1vw -18vh;
+    box-shadow: -62vmin 0 8.244730723798478vmin currentColor;
+}
+.background span:nth-child(14) {
+    color: #E45A84;
+    top: 88%;
+    left: 66%;
+    animation-duration: 66s;
+    animation-delay: -33s;
+    transform-origin: 2vw 21vh;
+    box-shadow: -62vmin 0 8.01787962243507vmin currentColor;
+}
+.background span:nth-child(15) {
+    color: #E45A84;
+    top: 82%;
+    left: 65%;
+    animation-duration: 68s;
+    animation-delay: -69s;
+    transform-origin: 8vw -7vh;
+    box-shadow: 62vmin 0 8.602280755600818vmin currentColor;
+}
+.background span:nth-child(16) {
+    color: #FFACAC;
+    top: 10%;
+    left: 64%;
+    animation-duration: 75s;
+    animation-delay: -54s;
+    transform-origin: -15vw -19vh;
+    box-shadow: -62vmin 0 8.440690339647393vmin currentColor;
+}
+.background span:nth-child(17) {
+    color: #583C87;
+    top: 51%;
+    left: 50%;
+    animation-duration: 32s;
+    animation-delay: -14s;
+    transform-origin: -10vw 5vh;
+    box-shadow: 62vmin 0 8.502847322286614vmin currentColor;
+}
+.background span:nth-child(18) {
+    color: #583C87;
+    top: 49%;
+    left: 94%;
+    animation-duration: 54s;
+    animation-delay: -24s;
+    transform-origin: 21vw -20vh;
+    box-shadow: -62vmin 0 7.81191384689568vmin currentColor;
+}
+.background span:nth-child(19) {
+    color: #E45A84;
+    top: 31%;
+    left: 4%;
+    animation-duration: 43s;
+    animation-delay: -162s;
+    transform-origin: -7vw -1vh;
+    box-shadow: -62vmin 0 8.464435886907044vmin currentColor;
+}
 
   /* ------------------ MEDIA QUERIES ------------------ */
   @media (max-width: 1024px) {
@@ -329,6 +568,27 @@
   }
 
 @media (max-width: 768px) {
+   .about-section {
+    flex-direction: column; /* pic on top, text below */
+  }
+
+  .about-section .about-text {
+  text-align: center;
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+  .about-section img {
+    
+     background: rgba(255, 255, 255, 0.151);
+    backdrop-filter: blur(5px);
+     object-position: top; 
+    width: 180px;
+    height: 180px;        /* gawin square */
+    object-fit: cover;    /* para hindi ma-stretch */
+    border-radius: 15px;  /* square na may konting kanto */
+  }
 body {
     margin: 700px;
   }
@@ -355,7 +615,7 @@ body {
     gap: 20px;
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.274);
-    backdrop-filter: blur(5px);
+        backdrop-filter: blur(12px);
     display: flex;
     justify-content: center;
     z-index: 100;
@@ -405,7 +665,28 @@ body {
 
 </head>
 <body>
-
+<div class="background">
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+   <span></span>
+</div>
   <!-- NAVIGATION -->
   <nav>
   <a onclick="showSection('about')">
@@ -429,12 +710,21 @@ body {
 </nav>
 
   <!-- ABOUT -->
-  <div style="text-align: left;" id="about" class="section active">
-    <h1> Heyo kamusta!</h1>
+  <div id="about" class="section active about-section">
+  <!-- Left side: Picture -->
+  <img src="images/tete.png" alt="Alexis Jiem Tolentino">
+
+  <!-- Right side: Text -->
+  <div style class="about-text">
+    <h1>Heyo kamusta!</h1>
     <h2 style="margin-top: -15px;">I’m Alexis</h2>
-    <p>An IT Graduate specializing in <b>Graphic Designing</b>, <b>Frontend Web Development</b>, and <b>Solo Game Development</b>.</p>
-       
+    <p>
+      An IT Graduate specializing in <b>Graphic Designing</b>, 
+      <b>Frontend Web Development</b>, and 
+      <b>Solo Game Development</b>.
+    </p>
   </div>
+</div>
 
   <!-- PROJECTS -->
 <div id="projects" class="section">
@@ -467,10 +757,10 @@ body {
   <div id="contact" class="section">
     <h1>Contact Me</h1>
     <p><i class="bi bi-envelope-fill"></i> 
-       <a style="text-decoration: none;"  href="mailto:alexisjiemfailure@gmail.com">alexisjiemfailure@gmail.com</a>
+       <a style="text-decoration: none; color: white;"  href="mailto:alexisjiemfailure@gmail.com">alexisjiemfailure@gmail.com</a>
     </p>
     <p><i class="bi bi-facebook"></i> 
-       <a style="text-decoration: none;" href="https://facebook.com/AlexisjTolentino" target="_blank">Alexisj Tolentino</a>
+       <a style="text-decoration: none;color: white;" href="https://facebook.com/AlexisjTolentino" target="_blank">Alexisj Tolentino</a>
     </p>
     <p><i class="bi bi-building"></i> Dual Blade Gaming Studio</p>
   </div>
